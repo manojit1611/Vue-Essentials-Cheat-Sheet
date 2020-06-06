@@ -2,7 +2,8 @@
 
 ### EXPRESSIONS
 
-```<div id="app">
+```vue
+<div id="app">
 <p>I have a {{ product }}</p>
 <p>{{ product + 's' }}</p>
 <p>{{ isWorking ? 'YES' : 'NO' }}</p> <p>{{ product.getSalePrice() }}</p>
@@ -12,117 +13,119 @@
 ### DIRECTIVES
 Element inserted/removed based on truthiness:
 
-`<p v-if="inStock">{{ product }}</p>`
+```vue
+<p -if="inStock">{{ product }}</p>
+```
   
- ```
+ ```vue
 <p v-else-if="onSale">...</p>
  <p v-else>...</p>
 ```
 
 Toggles the display: none CSS property:
-```
+```vue
 <p v-show="showProductDetails">...</p>
 ```
 
 Two-way data binding:
- ```
+ ```vue
  <input v-model="firstName" >
 ```
 
- ```
+ ```vue
  v-model.lazy="..." Syncs input after change event
    ```
 
- ```
+ ```vue
  v-model.number="..." Always returns a number
 ```
  
- ```
+ ```vue
 v-model.trim="..." Strips whitespace
 ```
 
 ### LIST RENDERING
 key always recommended
- ```
+ ```vue
 <li v-for="item in items" :key="item.id"> {{ item }}
 ```
 
 To access the position in the array:
- ```
+ ```vue
 <li v-for="(item, index) in items">..
 ```
 
 To iterate through objects:
-``` 
+``` vue
 <li v-for="(value, key) in object">...
 ```
 
 Using v-for with a component:
 
-```
+```vue
 <cart-product v-for="item in products" :product="item" :key="item.id">
 ```
 
 ### BINDING
 
-```
+```vue
 <a v-bind:href="url">...</a>
 ```
 True or false will add or remove attribute:
-```
+```vue
 <button :disabled="isButtonDisabled”>...
 ```
 If isActive is truthy, the class ‘active’ will appear:
-```
+```vue
 <div :class="{ active: isActive }">...
 ```
 Style color set to value of activeColor:
-```
+```vue
 <div :style="{ color: activeColor }">
 ```
 
 ### ACTIONS / EVENTS
-```
+```vue
 <button v-on:click="addToCart">...
 ```
 shorthand
 
-```
+```vue
 <button @click="addToCart">...
 ```
 Arguments can be passed:
-```
+```vue
 <button @click="addToCart(product)">..
 ```
 To prevent default behavior (e.g. page reload):
-```
+```vue
 <form @submit.prevent="addProduct">..
 ```
 Only trigger once:
-```
+```vue
 <img @mouseover.once="showImage">...
 ```
 Stop all event propagation
 
-```
+```vue
 .stop   
 ```
 
 Only trigger if event.target is element itself
-```
+```vue
 .self   
 ```
 
 Keyboard entry example:
-```
+```vue
 <input @keyup.enter="submit">
 ```
 Call onCopy when control-c is pressed:
-```
+```vue
 <input @keyup.ctrl.c="onCopy">
 ```
 Key modifiers:
-```
+```vue
 .tab
 .up
 .delete
@@ -137,14 +140,14 @@ Key modifiers:
 .meta
 ```
 Mouse modifiers:
-```
+```vue
 .left
 .right
 .middle
 ```
 
 ### COMPONENT ANATOMY
-``` 
+```vue
 
 Vue.component('my-component', {
     components: {
@@ -196,12 +199,12 @@ Use props (above) to pass data into child components, custom events to pass data
 
 Set listener on component, within its parent:
 
-```
+```vue
 <button-counter v-on:incrementBy="incWithVal">
 ```
 
 Inside parent component:
-```
+```vue
 methods: {
 incWithVal: function (toAdd) { ... }
 }
@@ -209,12 +212,12 @@ incWithVal: function (toAdd) { ... }
 Inside button-counter template:
 
 Custom event name : incrementBy and 5 : Data sent up to parent 
-```
+```vue
 this.$emit('incrementBy', 5)
 ```
 
 ### LIFECYCLE HOOKS
-```
+```vue
 beforeCreate
 created
 beforeMount
