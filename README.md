@@ -1,4 +1,4 @@
-# Vue-Essentials-Cheat-Sheet-for 
+# Vue-Essentials-Cheat-Sheet 
 
 ### EXPRESSIONS
 
